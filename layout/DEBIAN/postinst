@@ -19,7 +19,7 @@ else
 	root="/"
 fi
 
-printf "QlNESUZGNDA4AAAAAAAAAEQAAAAAAAAAMO0EAAAAAABCWmg5MUFZJlNZ/tZMSwAABuhJVCAAAUAAQABAAAACIAAiNPUDQgyYiQStjZz8XckU4UJD+1kxLEJaaDkxQVkmU1l2DCptAAJ57ATOQACAAAIgAAAEAAggAFCAGAUqQM1N5AhrQUzsqUrjWb5nmNIqj8XckU4UJB2DCptAQlpoORdyRThQkAAAAAA=" | base64 -d > "${root}/tmp/librocketbootstrap.bpatch"
+printf "QlNESUZGNDA4AAAAAAAAAEQAAAAAAAAAMO0EAAAAAABCWmg5MUFZJlNZ/tZMSwAABuhJVCAAAUAAQABAAAACIAAiNPUDQgyYiQStjZz8XckU4UJD+1kxLEJaaDkxQVkmU1l2DCptAAJ57ATOQACAAAIgAAAEAAggAFCAGAUqQM1N5AhrQUzsqUrjWb5nmNIqj8XckU4UJB2DCptAQlpoORdyRThQkAAAAAA=" | base64 -d > "/tmp/librocketbootstrap.bpatch"
 
 # Ensure we start from an unsigned state in case the dylib has already been resigned with ldid
 ldid -r "${root}/usr/lib/librocketbootstrap.dylib"
@@ -36,9 +36,9 @@ elif [ "$sha256" != "f7b4cb435a7c5efeb04c1410451e193c5702dec8b536104ddf73b319a6d
 	echo "[-] SHA-256 hash does not match, unable to patch. Please reinstall RocketBootstrap from BigBoss or Ryan Petrich's repo." >&2
 	exit 0
 else
-	bspatch "${root}/usr/lib/librocketbootstrap.dylib" "${root}/tmp/librocketbootstrap_patched.dylib" "${root}/tmp/librocketbootstrap.bpatch"
-	mv "${root}/tmp/librocketbootstrap_patched.dylib" "${root}/usr/lib/librocketbootstrap.dylib"
-	rm -f "${root}/tmp/librocketbootstrap.bpatch" || true
+	bspatch "${root}/usr/lib/librocketbootstrap.dylib" "/tmp/librocketbootstrap_patched.dylib" "/tmp/librocketbootstrap.bpatch"
+	mv "/tmp/librocketbootstrap_patched.dylib" "${root}/usr/lib/librocketbootstrap.dylib"
+	rm -f "/tmp/librocketbootstrap.bpatch" || true
 fi
 
 # Resign all RocketBootstrap binaries, including ones we didn't modify as they all need to be resigned for iOS 15+
