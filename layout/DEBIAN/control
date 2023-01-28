@@ -1,6 +1,6 @@
 Package: me.alexia.rocketbootstrapfix
 Name: RocketBootstrapFix
-Version: 0.1.1
+Version: 0.1.2
 Architecture: iphoneos-arm
 Description: Fix RocketBootstrap on iOS 15+
 Maintainer: alexia <me@alexia.lol>
