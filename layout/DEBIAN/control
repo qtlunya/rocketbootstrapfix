@@ -1,0 +1,11 @@
+Package: me.alexia.rocketbootstrapfix
+Name: RocketBootstrapFix
+Version: 0.1.0
+Architecture: iphoneos-arm
+Description: Fix RocketBootstrap on iOS 15+
+Maintainer: alexia <me@alexia.lol>
+Author: alexia <me@alexia.lol>
+Section: System
+Pre-Depends: bsdiff, com.rpetrich.rocketbootstrap (= 1.0.10~beta1), coreutils, ldid (>= 2.1.5-procursus7)
+Depiction: https://repo.alexia.lol/depictions/me.alexia.rocketbootstrapfix
+SileoDepiction: https://repo.alexia.lol/sileo-depictions/me.alexia.rocketbootstrapfix.json
