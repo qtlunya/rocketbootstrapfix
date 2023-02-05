@@ -15,13 +15,13 @@ EOF
 printf "QlNESUZGNDA4AAAAAAAAAEQAAAAAAAAAMO0EAAAAAABCWmg5MUFZJlNZ/tZMSwAABuhJVCAAAUAAQABAAAACIAAiNPUDQgyYiQStjZz8XckU4UJD+1kxLEJaaDkxQVkmU1l2DCptAAJ57ATOQACAAAIgAAAEAAggAFCAGAUqQM1N5AhrQUzsqUrjWb5nmNIqj8XckU4UJB2DCptAQlpoORdyRThQkAAAAAA=" | base64 -d > "/tmp/librocketbootstrap.bpatch"
 
 # Ensure we start from an unsigned state in case the dylib has already been resigned with ldid
-ldid -r /usr/lib/librocketbootstrap.dylib
+ldid -r /var/jb/usr/lib/librocketbootstrap.dylib
 
 # Just in case the user has the non-resigned Procursus version, since the resigned one has the same version number
 ldid -s "$(which bspatch)"
 
 echo "[*] Patching librocketbootstrap.dylib..."
-sha256=$(sha256sum /usr/lib/librocketbootstrap.dylib)
+sha256=$(sha256sum /var/jb/usr/lib/librocketbootstrap.dylib)
 sha256=${sha256%% *}
 if [ "$sha256" = "937ac00123860b36408431fada6bfa29b5450c372cd33f4fdd2dea00de934a9f" ]; then
 	echo "[-] Already patched, skipping."
@@ -29,14 +29,14 @@ elif [ "$sha256" != "f7b4cb435a7c5efeb04c1410451e193c5702dec8b536104ddf73b319a6d
 	echo "[-] SHA-256 hash does not match, unable to patch. Please reinstall RocketBootstrap from BigBoss or Ryan Petrich's repo." >&2
 	exit 0
 else
-	bspatch /usr/lib/librocketbootstrap.dylib /tmp/librocketbootstrap_patched.dylib /tmp/librocketbootstrap.bpatch
-	mv /tmp/librocketbootstrap_patched.dylib /usr/lib/librocketbootstrap.dylib
+	bspatch /var/jb/usr/lib/librocketbootstrap.dylib /tmp/librocketbootstrap_patched.dylib /tmp/librocketbootstrap.bpatch
+	mv /tmp/librocketbootstrap_patched.dylib /var/jb/usr/lib/librocketbootstrap.dylib
 	rm -f /tmp/librocketbootstrap.bpatch || true
 fi
 
 # Resign all RocketBootstrap binaries, including ones we didn't modify as they all need to be resigned for iOS 15+
 echo "[*] Resigning..."
-for f in /usr/lib/librocketbootstrap.dylib /usr/libexec/_rocketd_reenable /usr/libexec/rocketd; do
+for f in /var/jb/usr/lib/librocketbootstrap.dylib /var/jb/usr/libexec/_rocketd_reenable /var/jb/usr/libexec/rocketd; do
 	ldid -s "$f"
 done
 
