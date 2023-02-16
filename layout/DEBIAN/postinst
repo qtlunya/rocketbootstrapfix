@@ -27,7 +27,7 @@ if [ "$sha256" = "937ac00123860b36408431fada6bfa29b5450c372cd33f4fdd2dea00de934a
 	echo "[-] Already patched, skipping."
 elif [ "$sha256" != "f7b4cb435a7c5efeb04c1410451e193c5702dec8b536104ddf73b319a6dcea2f" ]; then
 	echo "[-] SHA-256 hash does not match, unable to patch. Please reinstall RocketBootstrap from BigBoss or Ryan Petrich's repo." >&2
-	exit 0
+	exit 1
 else
 	bspatch /usr/lib/librocketbootstrap.dylib /tmp/librocketbootstrap_patched.dylib /tmp/librocketbootstrap.bpatch
 	mv /tmp/librocketbootstrap_patched.dylib /usr/lib/librocketbootstrap.dylib
