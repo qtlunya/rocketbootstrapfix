@@ -6,6 +6,6 @@ Description: Fix RocketBootstrap on iOS 15+
 Maintainer: alexia <me@alexia.lol>
 Author: alexia <me@alexia.lol>
 Section: System
-Depends: bsdiff, com.rpetrich.rocketbootstrap (= 1.0.10~beta1), coreutils, ldid (>= 2.1.5-procursus7)
+Depends: bsdiff, com.rpetrich.rocketbootstrap (= 1.0.10~beta1) | com.rpetrich.rocketbootstrap (= 1.0.10~beta1-palera1n1), coreutils, ldid (>= 2.1.5-procursus7)
 Depiction: https://repo.alexia.lol/depictions/me.alexia.rocketbootstrapfix
 SileoDepiction: https://repo.alexia.lol/sileo-depictions/me.alexia.rocketbootstrapfix.json
